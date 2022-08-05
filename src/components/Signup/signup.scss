@@ -1,0 +1,82 @@
+@import "../../assets/global.scss";
+
+.wrapper {
+  @include center;
+  background-color: $bg-color;
+  min-width: 100vw;
+  min-height: 100vh;
+
+  .title {
+    font-size: $title-font-size;
+    color: $page-title-color;
+    font-family: $title-font-family;
+    margin-top: 5px;
+  }
+
+  .signup-box {
+    @include box;
+    @include center;
+    width: 90%;
+    min-height: 50vh;
+    margin-top: 3vh;
+    background-color: $auth-bg-color;
+
+    div {
+      @include image-spec;
+      @include center;
+      justify-content: center;
+      background-color: #fff;
+      width: 79px;
+      height: 79px;
+      margin-top: 20px;
+
+      img {
+        @include image-spec;
+      }
+
+      svg {
+        font-size: 85px;
+        color: $icon-profile-color;
+      }
+    }
+
+    form {
+      @include center;
+      width: 100%;
+      
+      input {
+        @include input-spec;
+        margin-top: 15px;
+        text-align: center;
+      }
+
+      input::placeholder{
+        text-align: center;
+        color: $placeholder-color;
+        font-size: $placeholder-font-size;
+      }
+
+      button {
+        @include button-spec;
+        margin: 20px;
+        width: 125px;
+        height: 45px;
+        color: #fff;
+        font-family: $default-font-family;
+        font-weight: 700;
+        background-color: $button-color;
+        cursor: pointer;
+      }
+
+      p {
+        margin-bottom: 20px;
+        color: $sign-up-in-button;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+  }
+}
+
