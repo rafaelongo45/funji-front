@@ -11,13 +11,13 @@ function Signup(){
   const [ userData, setUserData ] = useState({username: "", email: "", password: "", confirmPassword: "", profileImage: ""});
   
   return (
-    <main className="wrapper">
+    <main className="wrapper-signup">
       <h1 className="title">Funji</h1>
       <section className="signup-box">
         <div>
           {
             userData.profileImage ?
-              <img src={userData.profileImage} alt="Profile Image"/>
+              <img src={userData.profileImage} alt="Profile"/>
             :
               <FaUserCircle />
           }          
@@ -30,7 +30,7 @@ function Signup(){
           <input type={"password"} placeholder="password" onChange={(e) => setUserData({...userData, password: e.target.value})} required></input>
           <input type={"password"} placeholder="confirm password" onChange={(e) => setUserData({...userData, confirmPassword: e.target.value})} required></input>
           <button type="submit"> Signup </button>
-          <p> Already have an account?</p>
+          <p onClick={ () =>  navigate('/signin')}> Already have an account?</p>
         </form>
       </section>
     </main>

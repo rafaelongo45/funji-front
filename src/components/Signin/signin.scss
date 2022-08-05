@@ -1,6 +1,6 @@
 @import "../../assets/global.scss";
 
-.wrapper-signup {
+.wrapper-signin {
   @include center;
   @include wrapper;
 
@@ -8,39 +8,20 @@
     font-size: $title-font-size;
     color: $page-title-color;
     font-family: $title-font-family;
-    margin-top: 5px;
+    margin: 100px 0 50px 0;
   }
 
-  .signup-box {
+  .signin-box {
     @include box;
-    @include center;
-    width: 90%;
-    min-height: 50vh;
-    margin-top: 3vh;
     background-color: $auth-bg-color;
-
-    div {
-      @include image-spec;
-      @include center;
-      justify-content: center;
-      background-color: #fff;
-      width: 79px;
-      height: 79px;
-      margin-top: 20px;
-
-      img {
-        @include image-spec;
-      }
-
-      svg {
-        font-size: 85px;
-        color: $icon-profile-color;
-      }
-    }
+    width: 90%;
+    min-height: 31vh;
 
     form {
       @include center;
       width: 100%;
+      justify-content: center;
+      margin-top: 25px;
       
       input {
         @include input-spec;
@@ -74,7 +55,5 @@
         text-decoration: underline;
       }
     }
-
   }
 }
-

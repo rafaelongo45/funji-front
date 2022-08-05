@@ -14,10 +14,16 @@ $title-font-size: 100px;
 $title-font-family: 'Gurajada';
 $default-font-family: 'Roboto';
 
+@mixin wrapper {
+  background-color: $bg-color;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
 @mixin center {
   display:flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 };
 
 @mixin image-spec {
