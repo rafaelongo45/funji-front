@@ -55,11 +55,13 @@ export default function RenderSidebar({ setSidebarClick }) {
           </>
         )}
         <section className="grades-section">
-          {gradesClick ? <MdOutlineArrowDropDown /> : <MdOutlineArrowRight />}
-          <p onClick={() => changeClick()}>Grades</p>
-          {gradesClick ? <article>{RenderGrades(navigate)}</article> : <></>}
+          <div className="grades-title">
+            {gradesClick ? <MdOutlineArrowDropDown /> : <MdOutlineArrowRight />}
+            <p onClick={() => changeClick()}>Grades</p>
+          </div>
+          {gradesClick ? <article><RenderGrades navigate={navigate} setSidebarClick={setSidebarClick}/></article> : <></>}
         </section>
-        <p>All Kanjis</p>
+        <p onClick={() => navigate('/')}>All Kanjis</p>
         <p>Help</p>
       </section>
     </>

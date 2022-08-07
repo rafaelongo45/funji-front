@@ -19,18 +19,23 @@ export default function RenderDropdown({ setDropdownClick, navigate }) {
       />
       <div className="dropdown-arrow"></div>
       <section className="dropdown-box">
-        <button>
-          <div>
-            <AiOutlineUser className="dd-button-icon" />
-          </div>
-          {token ? (
+        {token ? (
+          <button>
+            <div>
+              <AiOutlineUser className="dd-button-icon" />
+            </div>
             <p onClick={() => navigate("/profile", { state: { username } })}>
               My profile
             </p>
-          ) : (
+          </button>
+        ) : (
+          <button>
+            <div>
+              <AiOutlineUser className="dd-button-icon" />
+            </div>
             <p onClick={() => navigate("/signin")}>Signin</p>
-          )}
-        </button>
+          </button>
+        )}
 
         {token ? (
           <button onClick={() => logout()}>

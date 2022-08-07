@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Header from "../Header";
 
@@ -10,6 +10,7 @@ import RenderGrades from "../Header/RenderGrades.js";
 
 export default function ProfilePage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { REACT_APP_BASE_URL } = process.env;
   const username = location.state.username;
   const userUsername = localStorage.getItem("username");
@@ -44,7 +45,7 @@ export default function ProfilePage() {
           <article className="collections-box">
             <h2 className="collections-title">Learn a new Kanji!</h2>
             <div className="bar"></div>
-            {RenderGrades()}
+            <RenderGrades navigate={navigate}/>
           </article>
         ) : (
           <></>

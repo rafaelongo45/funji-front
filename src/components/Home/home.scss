@@ -1,5 +1,46 @@
 @import "../../assets/global.scss";
 
 .wrapper-home {
+  @include center;
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
+  min-width: 100vw;
+  background-color: $bg-color;
 
+  >.kanjis-wrapper {
+    @include center;
+    margin-top: 20px;
+    min-width: 95%;
+    max-height: 80vh;
+    background-color: #fff;
+    border-radius: 18px;
+    box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
+
+    >h2 {
+      align-self: flex-start;
+      margin: 15px 0 5px 18px;
+      font-family: $default-font-family;
+      font-weight: 700;
+      font-size: 14px;
+      color: #434343;
+    }
+
+    >.bar {
+      margin: 0;
+      min-height: 1px;
+    }
+
+    >.kanjis {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px auto;
+      width: 90%;
+      height: 100%;
+      overflow: scroll;
+
+      .kanji-box {
+        margin: 5px auto;
+      }
+    }
+  }
 }
