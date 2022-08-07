@@ -1,0 +1,13 @@
+@import "../../assets/global.scss";
+
+.grade {
+  border: none;
+  border-radius: 12px; 
+  width: 70px;
+  height: 30px;
+  background-color: $button-color;
+  margin-top: 5px;
+  p {
+    font-size: 14px;  
+  }
+}

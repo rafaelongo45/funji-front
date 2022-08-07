@@ -1,0 +1,13 @@
+.container {
+  min-height: 50px;
+  width: 88%;
+  background-color: #fff;
+  margin: -20px 0 0 10px;
+  border-radius: 12px;
+  position: relative;
+  z-index:2;
+
+  section:nth-child(1){
+    margin-top: 35px;
+  }
+}

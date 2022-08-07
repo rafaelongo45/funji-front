@@ -1,0 +1,62 @@
+@import "../../assets/global.scss";
+
+.dropdown-page-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  top: 45px;
+  right: 17px;
+  border: 10px solid transparent;
+  border-bottom-color: $dropdown-bg-color;
+}
+
+.dropdown-box {
+  @include center;
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background-color: $dropdown-bg-color;
+  top: 62px;
+  right: 5px;
+  border-radius: 10px;
+  justify-content: space-between;
+  z-index: 3;
+
+  button {
+    display: flex;
+    align-items: center;
+    margin: 6px;
+    border: none;
+    border-radius: 8px;
+    background-color: $dropdown-item-color;
+    width: 90%;
+    height: 25px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 7px;
+      background-color: #fff;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+
+      .dd-button-icon {
+        font-size: 14px;
+        color: $header-bg-color;
+      }
+    }
+  }
+}

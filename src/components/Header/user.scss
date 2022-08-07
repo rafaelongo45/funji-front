@@ -1,0 +1,39 @@
+@import "../../assets/global.scss";
+
+.user-box {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  padding-left: 8px;
+
+  div {
+    @include image-spec;
+    @include center;
+    justify-content: center;
+    background-color: $bar-color;
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
+    
+    img {
+      @include image-spec;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .username {
+    color: #434343;
+    font-size: 14px;
+    padding: 10px 0 0 0;
+    margin: 0;
+    font-family: $default-font-family;
+    font-weight: 400;
+  }
+}
+
+.bar {
+  @include bar;
+  margin-left: 5%;
+  margin-bottom: 10px;
+}

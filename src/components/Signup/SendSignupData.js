@@ -7,6 +7,9 @@ export async function PostSignupData(e, signupData, navigate){
   promise.then(() => {
     navigate('/signin');
   });
-  promise.catch( err => console.log(err));
+  promise.catch( err => {
+    console.log(err)
+    alert(err)
+  });
 };
 
