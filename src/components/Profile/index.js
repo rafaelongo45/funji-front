@@ -6,11 +6,13 @@ import Header from "../Header";
 
 import "./profile.scss";
 import RenderKanjis from "./RenderKanjis.js";
+import RenderGrades from "../Header/RenderGrades.js";
 
 export default function ProfilePage() {
   const location = useLocation();
   const { REACT_APP_BASE_URL } = process.env;
   const username = location.state.username;
+  const userUsername = localStorage.getItem("username");
   const profileImage = localStorage.getItem("profileImage");
   const [userData, setUserData] = useState([]);
   const [kanjis, setKanjis] = useState([]);
@@ -38,12 +40,24 @@ export default function ProfilePage() {
         </div>
         <h1 className="username">{username}</h1>
 
+        {userUsername === userData.username ? (
+          <article className="collections-box">
+            <h2 className="collections-title">Learn a new Kanji!</h2>
+            <div className="bar"></div>
+            {RenderGrades()}
+          </article>
+        ) : (
+          <></>
+        )}
+
         <section className="kanjis-wrapper">
           <p className="kanjis-wrapper-title">{username}'s viewed kanjis</p>
           <div className="bar"></div>
           <section className="kanjis-big-box">
             {kanjis.length === 0 ? (
-              <p className="no-kanjis">Looks like {username} hasn't saved any kanjis yet...</p>
+              <p className="no-kanjis">
+                Looks like {username} hasn't saved any kanjis yet...
+              </p>
             ) : (
               <RenderKanjis kanjis={kanjis} />
             )}

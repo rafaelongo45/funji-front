@@ -3,7 +3,7 @@
 .profile-wrapper {
   @include center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 70px;
   background-color: $bg-color;
   position: relative;
@@ -34,6 +34,42 @@
         width: 82px;
         height: 82px;
       }
+    }
+  }
+
+
+  .collections-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 95%;
+    min-height: 170px;
+    margin: 0 auto 25px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
+
+    .collections-title {
+      margin: 10px 0 0 0 ;
+      font-family: $default-font-family;
+      font-size: 15px;
+      color: #434343;
+      font-weight: 700;
+    }
+
+    >.bar {
+      width: 90%;
+      margin: -5px 0 0 0;
+    }
+
+    >button {
+      margin: 0 auto;
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      font-family: $default-font-family;
+      height: 25px;
+      width: 68px;
     }
   }
 
@@ -72,11 +108,11 @@
       overflow: scroll;
       justify-content: flex-start;
       align-items: flex-start;
-      margin: auto;
+      margin: 0 auto;
 
       .no-kanjis {
         color: #979797;
-        justify-self: center;
+        justify-self: flex-start;
         margin: 15px auto;
         width: fit-content;
         height: fit-content;

@@ -5,6 +5,7 @@ import "./assets/dropdown.scss";
 
 export default function RenderDropdown({ setDropdownClick, navigate }) {
   const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
 
   function logout() {
     localStorage.clear();
@@ -23,7 +24,9 @@ export default function RenderDropdown({ setDropdownClick, navigate }) {
             <AiOutlineUser className="dd-button-icon" />
           </div>
           {token ? (
-            <p onClick={() => navigate("/profile")}>My profile</p>
+            <p onClick={() => navigate("/profile", { state: { username } })}>
+              My profile
+            </p>
           ) : (
             <p onClick={() => navigate("/signin")}>Signin</p>
           )}
