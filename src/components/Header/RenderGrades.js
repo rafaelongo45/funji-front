@@ -1,24 +1,26 @@
-import "./grades.scss";
+import generateNumber from "../utils/randomNumber.js";
 
-export default function RenderGrades() {
+import "./assets/grades.scss";
+
+export default function RenderGrades(navigate) {
   const gradesArr = [
-    "joyo",
-    "jouyou",
-    "jinmeiyo",
-    "jinmeiyou",
-    "grade-1",
-    "grade-2",
-    "grade-3",
-    "grade-4",
-    "grade-5",
-    "grade-6",
-    "grade-8",
+    { name: "Joyo", urlName: "joyo" },
+    { name: "Joyo 2", urlName: "jouyou" },
+    { name: "Jinmeyo", urlName:"jinmeiyo" },
+    { name: "Jinmeyo 2", urlName:"jinmeiyou" },
+    { name: "Grade 01", urlName:"grade-1" },
+    { name: "Grade 02", urlName:"grade-2" },
+    { name: "Grade 03", urlName:"grade-3" },
+    { name: "Grade 04", urlName:"grade-4" },
+    { name: "Grade 05", urlName:"grade-5" },
+    { name: "Grade 06", urlName:"grade-6" },
+    { name: "Grade 08", urlName:"grade-8" },
   ];
 
   return gradesArr.map((grade) => {
     return (
-      <button className="grade">
-        <p>{grade}</p>
+      <button className="grade" onClick={() => navigate(`/collection`, {state: {collection: grade.urlName}})} key={grade + generateNumber()}>
+        <p>{grade.name}</p>
       </button>
     );
   });

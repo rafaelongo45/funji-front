@@ -7,6 +7,7 @@ import UserContext from "../../contexts/UserContext.js";
 import Header from "../Header/index.js";
 import Signin from "../Signin/index.js";
 import Signup from "../Signup/index.js";
+import ProfilePage from "../Profile/index.js";
 
 function App() {
   const [ userInfo ] = useState(getUserInfo);
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Header />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

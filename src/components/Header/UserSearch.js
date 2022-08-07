@@ -1,14 +1,24 @@
 import RenderUser from "./RenderUser";
-import "./userSearch.scss";
+import generateNumber from "../utils/randomNumber.js";
 
-export function UserSearchContainer({searchedUser}){
+import "./assets/userSearch.scss";
+
+export function UserSearchContainer({ searchedUser, navigate, setSidebarClick}) {
   return (
     <section className="container">
-      {
-        searchedUser.map( (user) => {
-          return <RenderUser id = {user.id} username = {user.username} profileImage = {user.profileImage}/> 
-        })
-      }
+      {searchedUser.map((user) => {
+        return (
+          <RenderUser
+            navigate={navigate}
+            id={user.id}
+            username={user.username}
+            profileImage={user.profileImage}
+            setSidebarClick={setSidebarClick}
+            key={user.id + generateNumber()
+            }
+          />
+        );
+      })}
     </section>
-  )
+  );
 }

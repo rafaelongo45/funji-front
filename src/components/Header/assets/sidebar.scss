@@ -1,4 +1,4 @@
-@import "../../assets/global.scss";
+@import "../../../assets//global.scss";
 
 .sidebar-bg {
   height: 100vh;
@@ -62,6 +62,8 @@
 
     p {
       margin: 0 0px;
+      cursor: pointer;
+
     }
 
     article{

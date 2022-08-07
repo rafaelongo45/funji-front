@@ -1,7 +1,7 @@
 import { IoBackspaceSharp } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
 
-import "./dropdown.scss";
+import "./assets/dropdown.scss";
 
 export default function RenderDropdown({ setDropdownClick, navigate }) {
   const token = localStorage.getItem("token");
@@ -23,7 +23,7 @@ export default function RenderDropdown({ setDropdownClick, navigate }) {
             <AiOutlineUser className="dd-button-icon" />
           </div>
           {token ? (
-            <p onClick={() => navigate("/myprofile")}>My profile</p>
+            <p onClick={() => navigate("/profile")}>My profile</p>
           ) : (
             <p onClick={() => navigate("/signin")}>Signin</p>
           )}

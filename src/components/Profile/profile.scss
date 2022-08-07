@@ -1,0 +1,90 @@
+@import "../../assets/global.scss";
+
+.profile-wrapper {
+  @include center;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 70px;
+  background-color: $bg-color;
+  position: relative;
+  
+  .bg-image {
+    @include center;
+    justify-content: center;
+    position: relative;
+    left: 0;
+    
+    img{
+      width: 100vw;
+      height: 20vh;
+      object-fit: cover;
+    }
+
+    .user-profile-image {
+      @include center;
+      @include image-spec;
+      justify-content: center;
+      background-color: #fff;
+      position: absolute;
+      width: 86px;
+      height: 86px;
+      
+      img {
+        @include image-spec;
+        width: 82px;
+        height: 82px;
+      }
+    }
+  }
+
+  .username {
+    font-family: $default-font-family;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 15px;
+  }
+
+  .kanjis-wrapper {
+    @include center;
+    width: 95%;
+    min-height: 30vh;
+    background-color: #fff;
+    border-radius: 18px;
+    box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
+
+    .kanjis-wrapper-title{
+      align-self: flex-start;
+      margin: 12px 0 6px 20px;
+      font-family: $default-font-family;
+      font-size: 15px;
+      color: #434343;
+      font-weight: 700;
+    }
+
+    .bar {
+      align-self: flex-start;
+    }
+
+    .kanjis-big-box {
+      display: flex;
+      width: 95%;
+      height: 79%;
+      overflow: scroll;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: auto;
+
+      .no-kanjis {
+        color: #979797;
+        justify-self: center;
+        margin: 15px auto;
+        width: fit-content;
+        height: fit-content;
+        font-family: $default-font-family;
+        font-weight: 700;
+        font-size: 12px;
+      }
+    }
+  }
+ 
+}

@@ -1,4 +1,4 @@
-@import "../../assets/global.scss";
+@import "../../../assets/global.scss";
 
 .dropdown-page-wrapper {
   position: fixed;
@@ -27,7 +27,6 @@
   right: 5px;
   border-radius: 10px;
   justify-content: space-between;
-  z-index: 3;
 
   button {
     display: flex;
@@ -41,6 +40,8 @@
     color: #fff;
     font-weight: 700;
     font-size: 12px;
+    position: relative;
+    z-index: 3;
     cursor: pointer;
 
     div {

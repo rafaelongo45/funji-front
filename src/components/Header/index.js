@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-import "./header.scss";
+import "./assets/header.scss";
 import RenderDropdown from "./dropdown.js";
 import RenderSidebar from "./sidebar";
 

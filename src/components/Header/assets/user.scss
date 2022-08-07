@@ -1,10 +1,12 @@
-@import "../../assets/global.scss";
+@import "../../../assets//global.scss";
 
 .user-box {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 10px;
   padding-left: 8px;
+  position: relative;
+  z-index: 3;
 
   div {
     @include image-spec;
@@ -29,6 +31,16 @@
     margin: 0;
     font-family: $default-font-family;
     font-weight: 400;
+    position: relative;
+    width: 100%;
+    
+    span {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 10px;
+      color: rgb(129, 129, 129);
+    }
   }
 }
 

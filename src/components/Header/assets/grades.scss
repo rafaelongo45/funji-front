@@ -1,4 +1,4 @@
-@import "../../assets/global.scss";
+@import "../../../assets/global.scss";
 
 .grade {
   border: none;
@@ -8,6 +8,6 @@
   background-color: $button-color;
   margin-top: 5px;
   p {
-    font-size: 14px;  
+    font-size: 12px;  
   }
 }
