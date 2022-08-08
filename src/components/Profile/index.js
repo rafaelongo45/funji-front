@@ -60,7 +60,7 @@ export default function ProfilePage() {
                 Looks like {username} hasn't saved any kanjis yet...
               </p>
             ) : (
-              <RenderKanjis kanjis={kanjis} />
+              <RenderKanjis kanjis={kanjis} navigate={navigate}/>
             )}
           </section>
         </section>

@@ -7,6 +7,7 @@ import UserContext from "../../contexts/UserContext.js";
 import Home from "../Home/index.js";
 import Signin from "../Signin/index.js";
 import Signup from "../Signup/index.js";
+import KanjiPage from "../Kanji/index.js";
 import ProfilePage from "../Profile/index.js";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/kanji" element={<KanjiPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

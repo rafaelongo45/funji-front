@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const {REACT_APP_BASE_URL} = process.env;
-console.log(REACT_APP_BASE_URL)
 export default function postSigninData(e, userData, navigate) {
   e.preventDefault();
   const promise = axios.post(`${REACT_APP_BASE_URL}/signin`, userData);

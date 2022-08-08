@@ -1,0 +1,32 @@
+@import "../../assets/global.scss";
+
+.info {
+  @include center;
+  width: 47%;
+  height: 45%;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
+  overflow: scroll;
+
+  .title {
+    margin: 8px 0 3px 0;
+    font-weight: 700;
+    color: #434343;
+    font-size: 12px;
+    font-family: $default-font-family;
+  }
+
+  .kanji-info-container {
+    @include center;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .bar {
+      margin: 0 0 10px 0;
+    }
+  }
+}

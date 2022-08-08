@@ -1,0 +1,83 @@
+@import "../../assets/global.scss";
+
+.kanji-page-wrapper {
+  @include center;
+  width: 100vw;
+  height: calc(100vh - 70px);
+  margin-top: 70px;
+  background-color: $bg-color;
+  position: relative;
+
+  .kanji-name-box {
+    @include center;
+    width: 50%;
+    height: 160px;
+    background-color: $kanji-bg-color;
+    position: absolute;
+    top: 30px;
+    border-radius: 25px;
+
+    .kanji {
+      @include center;
+      justify-content: center;
+      margin-top: 15px;
+      width: 70%;
+      height: 52%;
+      background-color: #fff;
+      border-radius: 16px;
+
+      em {
+        font-size: 60px;
+      }
+    }
+  }
+
+  .kanji-info {
+    @include center;
+    width: 95%;
+    height: 60%;
+    background-color: $kanji-bg-color;
+    position: absolute;
+    top: 130px;
+    border-radius: 25px;
+    box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
+
+    > h1 {
+      font-family: $default-font-family;
+      margin: 15px 0 5px 0;
+      text-align: center;
+      font-weight: 700;
+      color: #323232;
+    }
+
+    .kanji-all-infos {
+      display: flex;
+      flex-wrap: wrap;
+      width: 95%;
+      height: 86%;
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: -60px;
+    width: 90%;
+
+    button {
+      margin: 0 auto;
+      background-color: $button-color;
+      font-weight: 700;
+      box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
+      font-family: $default-font-family;
+      border-radius: 12px;
+      height: 40px;
+      width: 90px;
+      border: none;
+      color: white;
+      font-family: $default-font-family;
+      font-size: 18px;
+    }
+  }
+}

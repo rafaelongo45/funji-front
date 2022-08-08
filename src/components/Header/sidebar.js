@@ -61,7 +61,7 @@ export default function RenderSidebar({ setSidebarClick }) {
           </div>
           {gradesClick ? <article><RenderGrades navigate={navigate} setSidebarClick={setSidebarClick}/></article> : <></>}
         </section>
-        <p onClick={() => navigate('/')}>All Kanjis</p>
+        <p onClick={() => {setSidebarClick(false); navigate('/')}}>All Kanjis</p>
         <p>Help</p>
       </section>
     </>

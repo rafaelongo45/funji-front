@@ -3,6 +3,7 @@ import generateNumber from "../utils/randomNumber.js";
 import "./assets/grades.scss";
 
 export default function RenderGrades({ navigate, setSidebarClick }) {
+
   const gradesArr = [
     { name: "Joyo", urlName: "joyo" },
     { name: "Joyo 2", urlName: "jouyou" },
@@ -16,10 +17,16 @@ export default function RenderGrades({ navigate, setSidebarClick }) {
     { name: "Grade 06", urlName:"grade-6" },
     { name: "Grade 08", urlName:"grade-8" },
   ];
+  
+  function sidebarExists(){
+    if(setSidebarClick){
+      setSidebarClick(false);
+    }
+  }
 
   return gradesArr.map((grade) => {
     return (
-      <button className="grade" onClick={() => {setSidebarClick(false); navigate(`/`, {state: {collection: grade.urlName}})}} key={grade + generateNumber()}>
+      <button className="grade" onClick={() => { sidebarExists(); navigate(`/`, {state: {collection: grade.urlName}})}} key={grade + generateNumber()}>
         <p className="grade-title">{grade.name}</p>
       </button>
     );
