@@ -81,6 +81,7 @@
   }
 
   .kanjis-wrapper {
+    position: relative;
     @include center;
     width: 95%;
     min-height: 30vh;
@@ -89,12 +90,30 @@
     box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
 
     .kanjis-wrapper-title{
+      display: flex;
+      align-items: center;
       align-self: flex-start;
-      margin: 12px 0 6px 20px;
+      margin: 12px 0 10px 20px;
       font-family: $default-font-family;
       font-size: 15px;
       color: #434343;
       font-weight: 700;
+
+      >.review-button {
+        @include center;
+        position: absolute;
+        right: 15px;
+        top: 7px;
+        border: none;
+        justify-content: center;
+        width: 60px;
+        height: 25px;
+        background-color: $button-color;
+        color: #fff;
+        font-weight: 700;
+        font-family: $default-font-family;
+        border-radius: 14px;
+      }
     }
 
     .bar {

@@ -1,14 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Header from "../Header";
-
-import "./profile.scss";
 import RenderKanjis from "./RenderKanjis.js";
 import RenderGrades from "../Header/RenderGrades.js";
+import UserContext from "../../contexts/UserContext.js";
+
+import "./profile.scss";
 
 export default function ProfilePage() {
+  const { userInfo, setUserInfo } = useContext(UserContext);
   const location = useLocation();
   const navigate = useNavigate();
   const { REACT_APP_BASE_URL } = process.env;
@@ -17,11 +19,13 @@ export default function ProfilePage() {
   const profileImage = localStorage.getItem("profileImage");
   const [userData, setUserData] = useState([]);
   const [kanjis, setKanjis] = useState([]);
+  console.log(userInfo);
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/user/${username}/kanjis`);
     promise.then((res) => {
       setUserData(res.data);
       setKanjis(res.data.kanjis);
+      setUserInfo({ ...userInfo, userKanjis: res.data.kanjis });
     });
     promise.catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,14 +49,21 @@ export default function ProfilePage() {
           <article className="collections-box">
             <h2 className="collections-title">Learn a new Kanji!</h2>
             <div className="bar"></div>
-            <RenderGrades navigate={navigate}/>
+            <RenderGrades navigate={navigate} />
           </article>
         ) : (
           <></>
         )}
 
         <section className="kanjis-wrapper">
-          <p className="kanjis-wrapper-title">{username}'s viewed kanjis</p>
+          <p className="kanjis-wrapper-title">
+            {username}'s viewed kanjis
+            {username === userUsername ? (
+              <button className="review-button" onClick={() => navigate('/review')} >Review</button>
+            ) : (
+              <></>
+            )}
+          </p>
           <div className="bar"></div>
           <section className="kanjis-big-box">
             {kanjis.length === 0 ? (
@@ -60,7 +71,7 @@ export default function ProfilePage() {
                 Looks like {username} hasn't saved any kanjis yet...
               </p>
             ) : (
-              <RenderKanjis kanjis={kanjis} navigate={navigate}/>
+              <RenderKanjis kanjis={kanjis} navigate={navigate} />
             )}
           </section>
         </section>

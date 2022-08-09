@@ -1,4 +1,5 @@
 import generateNumber from "../utils/randomNumber";
+
 import "./kanjiInfoComponent.scss";
 
 export default function RenderKanjiInfo({ info, title }) {
