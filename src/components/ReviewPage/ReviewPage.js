@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext.js";
 import Header from "../Header/index.js";
 import RenderKanjiInfo from "../Kanji/RenderKanjiInfos.js";
+import RenderModal from "./ReviewModal.js";
 
 import "./reviewPage.scss";
 
@@ -14,6 +15,7 @@ export default function ReviewPage() {
   const { userInfo } = useContext(UserContext);
   const userKanjis = userInfo.userKanjis;
   const [cardClick, setCardClick] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [kanjiInfo, setKanjiInfo] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +39,9 @@ export default function ReviewPage() {
     if (index !== userKanjis.length - 1) {
       index++;
       kanji = { kanji: userInfo.userKanjis[index].kanji };
-      navigate(`/review/${userInfo.userKanjis[index].kanji}`, { state: { kanji: kanji, index: index } });
+      navigate(`/review/${userInfo.userKanjis[index].kanji}`, {
+        state: { kanji: kanji, index: index },
+      });
     }
   }
 
@@ -51,9 +55,10 @@ export default function ReviewPage() {
   return (
     <>
       <Header />
+      {showModal ? <RenderModal setShowModal={setShowModal} setCardClick={setCardClick} /> : <> </>}
       <main className="review-page-wrapper">
         {!cardClick ? (
-          <section className="kanji-card" onClick={() => cardToggle()}>
+          <section className="kanji-card" onClick={() => setShowModal(true)}>
             <p className="kanji">{kanji}</p>
             <div className="front-indicator"></div>
           </section>
@@ -81,7 +86,7 @@ export default function ReviewPage() {
         )}
 
         <form className="card-answer">
-          <input></input>
+          <input disabled={cardClick ? true : false}></input>
           <IoSendSharp />
         </form>
 

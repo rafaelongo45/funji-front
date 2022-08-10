@@ -6,6 +6,7 @@ import Header from "../Header";
 import RenderKanjis from "./RenderKanjis.js";
 import RenderGrades from "../Header/RenderGrades.js";
 import UserContext from "../../contexts/UserContext.js";
+import RenderModal from "./RenderModal.js";
 
 import "./profile.scss";
 
@@ -19,6 +20,7 @@ export default function ProfilePage() {
   const profileImage = localStorage.getItem("profileImage");
   const [userData, setUserData] = useState([]);
   const [kanjis, setKanjis] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/user/${username}/kanjis`);
     promise.then((res) => {
@@ -29,9 +31,11 @@ export default function ProfilePage() {
     promise.catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
+  console.log(showModal)
   return (
     <>
       <Header />
+      {showModal ? <RenderModal setShowModal={setShowModal} navigate={navigate} kanjis={kanjis}/> : <></>}
       <main className="profile-wrapper">
         <div className="bg-image">
           <img
@@ -58,7 +62,12 @@ export default function ProfilePage() {
           <p className="kanjis-wrapper-title">
             {username}'s viewed kanjis
             {username === userUsername ? (
-              <button className="review-button" onClick={() => navigate(`/review/${kanjis[0].kanji}`,{ state:{kanji: kanjis[0], index: 0}})} >Review</button>
+              <button
+                className="review-button"
+                onClick={() => setShowModal(true)}
+              >
+                Review
+              </button>
             ) : (
               <></>
             )}
@@ -78,3 +87,5 @@ export default function ProfilePage() {
     </>
   );
 }
+
+
