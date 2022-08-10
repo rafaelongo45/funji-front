@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Header from "../Header";
+import UserContext from "../../contexts/UserContext.js";
 
 import "./kanjiPage.scss";
 import PostKanjiUser from "./postKanji.js";
@@ -11,14 +12,23 @@ import RenderKanjiInfo from "./RenderKanjiInfos.js";
 const { REACT_APP_BASE_URL } = process.env;
 export default function KanjiPage() {
   const navigate = useNavigate();
+  const {userInfo} = useContext(UserContext);
+  const userKanjis = userInfo.userKanjis;
   const location = useLocation();
   const token = localStorage.getItem('token');
   const { kanji } = location.state;
   const [kanjiInfo, setKanjiInfo] = useState([]);
+  const hasKanji = userKanjis.find((kanjiObj) => {
+    if(kanjiObj.kanji === kanji) {
+      return true
+    }
+  });
+  console.log(hasKanji)
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/kanji/${kanji}`);
     promise.then((res) => setKanjiInfo(res.data));
     promise.catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
@@ -40,7 +50,7 @@ export default function KanjiPage() {
           </section>
           <div className="button-wrapper">
             <button onClick={() => navigate(-1)}> Go back </button>
-            <button disabled={token ? false : true} onClick={() => PostKanjiUser(kanjiInfo.kanji, kanjiInfo.grade, token)} > Save </button>
+            <button disabled={token && !hasKanji? false : true} onClick={() => PostKanjiUser(kanjiInfo.kanji, kanjiInfo.grade, token)} > Save </button>
           </div>
         </section>
       </main>

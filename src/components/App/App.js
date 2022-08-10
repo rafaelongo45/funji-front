@@ -22,7 +22,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/kanji" element={<KanjiPage />} />
-          <Route path="/review" element={<ReviewPage />} />
+          <Route path="/review/:kanji" element={<ReviewPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

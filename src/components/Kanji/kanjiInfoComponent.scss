@@ -19,14 +19,19 @@
   }
 
   .kanji-info-container {
-    @include center;
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    justify-content: center;
 
-    .bar {
-      margin: 0 0 10px 0;
+    >.bar {
+      width: 100%;
+      margin: 0 0 5px 0;
+    }
+
+    > article {
+      width: 100%;
+      margin-top: 2px;
     }
   }
 }

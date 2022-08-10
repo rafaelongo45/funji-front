@@ -19,7 +19,6 @@ export default function ProfilePage() {
   const profileImage = localStorage.getItem("profileImage");
   const [userData, setUserData] = useState([]);
   const [kanjis, setKanjis] = useState([]);
-  console.log(userInfo);
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/user/${username}/kanjis`);
     promise.then((res) => {
@@ -59,7 +58,7 @@ export default function ProfilePage() {
           <p className="kanjis-wrapper-title">
             {username}'s viewed kanjis
             {username === userUsername ? (
-              <button className="review-button" onClick={() => navigate('/review')} >Review</button>
+              <button className="review-button" onClick={() => navigate(`/review/${kanjis[0].kanji}`,{ state:{kanji: kanjis[0], index: 0}})} >Review</button>
             ) : (
               <></>
             )}

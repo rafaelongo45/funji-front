@@ -79,5 +79,9 @@
       font-family: $default-font-family;
       font-size: 18px;
     }
+
+    button:disabled {
+      background-color: $disabled-button;
+    }
   }
 }
