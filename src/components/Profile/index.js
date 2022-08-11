@@ -31,7 +31,6 @@ export default function ProfilePage() {
     promise.catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
-  console.log(showModal)
   return (
     <>
       <Header />

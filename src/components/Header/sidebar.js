@@ -37,7 +37,7 @@ export default function RenderSidebar({ setSidebarClick }) {
           placeholder="Search for other users..."
           minLength={3}
           debounceTimeout={3}
-          value={searchString }
+          value={ searchString }
           onChange={(e) => setSearchString(e.target.value)}
         />
         {searchedUser.length === 0 ? (

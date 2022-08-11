@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { DebounceInput } from "react-debounce-input";
 import { IoSendSharp } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import UserContext from "../../contexts/UserContext.js";
 import Header from "../Header/index.js";
 import RenderKanjiInfo from "../Kanji/RenderKanjiInfos.js";
+import selectVocabulary from "../utils/selectVocabulary.js";
+import translator from "../utils/translate.js";
 import RenderModal from "./ReviewModal.js";
 
 import "./reviewPage.scss";
@@ -17,12 +20,15 @@ export default function ReviewPage() {
   const [cardClick, setCardClick] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [kanjiInfo, setKanjiInfo] = useState([]);
+  const [lastLetter, setLastLetter] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [word, setWord] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   let kanji = location.state.kanji.kanji;
   let index = location.state.index;
   const username = localStorage.getItem("username");
-
+  const hashtable = selectVocabulary("hiragana");
   function cardToggle() {
     if (cardClick) {
       setCardClick(false);
@@ -52,10 +58,22 @@ export default function ReviewPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
+  function changeInput(e){
+    const letter = translator(hashtable, lastLetter);
+    if(lastLetter === 'Backspace'){
+      setWord(word.slice(0, word.length - 1))
+    }else{
+      setWord(word + letter)
+    }
+  } 
   return (
     <>
       <Header />
-      {showModal ? <RenderModal setShowModal={setShowModal} setCardClick={setCardClick} /> : <> </>}
+      {showModal ? (
+        <RenderModal setShowModal={setShowModal} setCardClick={setCardClick} />
+      ) : (
+        <> </>
+      )}
       <main className="review-page-wrapper">
         {!cardClick ? (
           <section className="kanji-card" onClick={() => setShowModal(true)}>
@@ -86,7 +104,12 @@ export default function ReviewPage() {
         )}
 
         <form className="card-answer">
-          <input disabled={cardClick ? true : false}></input>
+          <input
+            onKeyDown={(e) => setLastLetter(e.key)}
+            type={'text'}
+            onChange={(e) => changeInput(e)}
+            value={word}
+          />
           <IoSendSharp />
         </form>
 
