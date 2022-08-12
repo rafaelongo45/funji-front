@@ -1,17 +1,15 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Header from "../Header";
 import RenderKanjis from "./RenderKanjis.js";
 import RenderGrades from "../Header/RenderGrades.js";
-import UserContext from "../../contexts/UserContext.js";
 import RenderModal from "./RenderModal.js";
 
 import "./profile.scss";
 
 export default function ProfilePage() {
-  const { userInfo, setUserInfo } = useContext(UserContext);
   const location = useLocation();
   const navigate = useNavigate();
   const { REACT_APP_BASE_URL } = process.env;
@@ -26,7 +24,6 @@ export default function ProfilePage() {
     promise.then((res) => {
       setUserData(res.data);
       setKanjis(res.data.kanjis);
-      setUserInfo({ ...userInfo, userKanjis: res.data.kanjis });
     });
     promise.catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps

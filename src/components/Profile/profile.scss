@@ -122,13 +122,12 @@
 
     .kanjis-big-box {
       display: flex;
-      width: 95%;
+      flex-wrap: wrap;
       height: 79%;
       overflow: scroll;
       justify-content: flex-start;
       align-items: flex-start;
-      margin: 0 auto;
-
+      margin: 0 15px;
       .no-kanjis {
         color: #979797;
         justify-self: flex-start;

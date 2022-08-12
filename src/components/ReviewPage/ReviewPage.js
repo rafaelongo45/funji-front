@@ -21,6 +21,7 @@ export default function ReviewPage() {
   const [showModal, setShowModal] = useState(false);
   const [kanjiInfo, setKanjiInfo] = useState([]);
   const [lastLetter, setLastLetter] = useState([]);
+  const [correct, setCorrect] = useState(false);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,6 +39,9 @@ export default function ReviewPage() {
   }
 
   function checkIndexRedirect() {
+    setCorrect(false)
+    setWord('')
+    setLastLetter([])
     if (index === userKanjis.length - 1) {
       navigate("/profile", { state: { username: username } });
     }
@@ -46,12 +50,14 @@ export default function ReviewPage() {
       index++;
       kanji = { kanji: userInfo.userKanjis[index].kanji };
       navigate(`/review/${userInfo.userKanjis[index].kanji}`, {
-        state: { kanji: kanji, index: index },
+        state: { kanji: kanji, index: index, type: type},
       });
     }
   }
   console.log(kanjiInfo);
   console.log(word);
+  console.log(type);
+  console.log(hashtable)
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/kanji/${kanji}`);
     promise.then((res) => setKanjiInfo(res.data));
@@ -59,7 +65,7 @@ export default function ReviewPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
-  function changeInput(type) {
+  function changeInput() {
     console.log(lastLetter);
     const prevLet = lastLetter.toString().replaceAll(",", "");
     console.log(prevLet);
@@ -78,6 +84,7 @@ export default function ReviewPage() {
     const correctAnswer = arr.includes(word.toLowerCase().trim());
     if(correctAnswer){
       alert('You got it buddy!')
+      setCorrect(true)
     }
   }
   return (
@@ -154,7 +161,7 @@ export default function ReviewPage() {
             >
               Go back
             </button>
-            <button onClick={() => checkIndexRedirect()}>Next</button>
+            <button disabled={correct ? false : true} onClick={() => checkIndexRedirect()}>Next</button>
           </div>
         )}
       </main>

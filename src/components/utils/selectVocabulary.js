@@ -441,4 +441,5 @@ export default function selectVocabulary(type) {
 
   if (type === "kun") return hiraganaHash;
   if (type === "on") return katakanaHash;
+  if (type === "meaning") return;
 }

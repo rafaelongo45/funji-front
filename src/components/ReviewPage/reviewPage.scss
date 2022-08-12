@@ -144,5 +144,9 @@
       font-family: $default-font-family;
       font-size: 15px;
     }
+
+    button:disabled {
+      background-color: $disabled-button;
+    }
   }
 }
