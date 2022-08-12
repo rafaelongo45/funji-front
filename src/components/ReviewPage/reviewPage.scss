@@ -111,11 +111,15 @@
       background-color: $disabled-button;
     }
 
-    svg {
+    button {
       position: absolute;
       top: 8px;
       right: 8px;
-      color: #0D34FF;
+      border: none;
+      background-color: transparent;
+      svg {
+        color: #0D34FF;
+      }
     }
   }
 

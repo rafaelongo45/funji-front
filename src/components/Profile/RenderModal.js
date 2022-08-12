@@ -22,8 +22,7 @@ export default function RenderModal({ setShowModal, navigate, kanjis }) {
           <button
             onClick={() =>
               navigate(`/review/${kanjis[0].kanji}`, {
-                state: { kanji: kanjis[0], index: 0 },
-                type: "on",
+                state: { kanji: kanjis[0], index: 0 , type: "on",}
               })
             }
           >
@@ -32,7 +31,7 @@ export default function RenderModal({ setShowModal, navigate, kanjis }) {
           <button
             onClick={() =>
               navigate(`/review/${kanjis[0].kanji}`, {
-                state: { kanji: kanjis[0], index: 0 },
+                state: { kanji: kanjis[0], index: 0, type:'meaning'},
                 type: "meaning",
               })
             }

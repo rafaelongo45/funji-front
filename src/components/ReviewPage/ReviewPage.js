@@ -20,15 +20,15 @@ export default function ReviewPage() {
   const [cardClick, setCardClick] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [kanjiInfo, setKanjiInfo] = useState([]);
-  const [lastLetter, setLastLetter] = useState('');
-  const [inputValue, setInputValue] = useState('');
-  const [word, setWord] = useState('');
+  const [lastLetter, setLastLetter] = useState([]);
+  const [word, setWord] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   let kanji = location.state.kanji.kanji;
   let index = location.state.index;
+  let type = location.state.type;
   const username = localStorage.getItem("username");
-  const hashtable = selectVocabulary("hiragana");
+  const hashtable = selectVocabulary(type);
   function cardToggle() {
     if (cardClick) {
       setCardClick(false);
@@ -50,7 +50,8 @@ export default function ReviewPage() {
       });
     }
   }
-
+  console.log(kanjiInfo);
+  console.log(word);
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/kanji/${kanji}`);
     promise.then((res) => setKanjiInfo(res.data));
@@ -58,14 +59,27 @@ export default function ReviewPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
-  function changeInput(e){
-    const letter = translator(hashtable, lastLetter);
-    if(lastLetter === 'Backspace'){
-      setWord(word.slice(0, word.length - 1))
-    }else{
-      setWord(word + letter)
+  function changeInput(type) {
+    console.log(lastLetter);
+    const prevLet = lastLetter.toString().replaceAll(",", "");
+    console.log(prevLet);
+    const letter = translator(hashtable, prevLet);
+    setWord(word + letter);
+    setLastLetter([]);
+  }
+
+  function checkAnswer(e){
+    e.preventDefault();
+    let arr = [];
+    if(type === 'kun') arr = kanjiInfo.kun_readings;
+    if(type === 'on') arr = kanjiInfo.on_readings;
+    if(type === 'meaning') arr = kanjiInfo.meanings;
+
+    const correctAnswer = arr.includes(word.toLowerCase().trim());
+    if(correctAnswer){
+      alert('You got it buddy!')
     }
-  } 
+  }
   return (
     <>
       <Header />
@@ -103,14 +117,30 @@ export default function ReviewPage() {
           </section>
         )}
 
-        <form className="card-answer">
-          <input
-            onKeyDown={(e) => setLastLetter(e.key)}
-            type={'text'}
-            onChange={(e) => changeInput(e)}
-            value={word}
-          />
-          <IoSendSharp />
+        <form className="card-answer" onSubmit={(e) => checkAnswer(e)}>
+          {type !== "meaning" ? (
+            <DebounceInput
+              onKeyDown={(e) => {
+                if (e.key === "Backspace" || e.key === "Delete") {
+                  setWord("");
+                  setLastLetter([]);
+                } else {
+                  setLastLetter([...lastLetter, e.key]);
+                }
+              }}
+              type={"text"}
+              debounceTimeout={200}
+              onChange={(e) => changeInput(e)}
+              value={word}
+            />
+          ) : (
+            <input
+              onChange={(e) => setWord(e.target.value)}
+            ></input>
+          )}
+          <button type="submit">
+            <IoSendSharp />
+          </button>
         </form>
 
         {cardClick ? (
