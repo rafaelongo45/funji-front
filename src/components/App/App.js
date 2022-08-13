@@ -10,6 +10,7 @@ import Signup from "../Signup/index.js";
 import KanjiPage from "../Kanji/index.js";
 import ProfilePage from "../Profile/index.js";
 import ReviewPage from "../ReviewPage/ReviewPage.js";
+import HelpPage from "../Help/index.js";
 
 function App() {
   const [ userInfo, setUserInfo ] = useState(getUserInfo);
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/kanji" element={<KanjiPage />} />
           <Route path="/review/:kanji" element={<ReviewPage />} />
+          <Route path="/help" element={<HelpPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

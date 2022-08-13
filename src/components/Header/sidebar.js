@@ -11,7 +11,7 @@ import { UserSearchContainer } from "./UserSearch";
 
 export default function RenderSidebar({ setSidebarClick }) {
   const navigate = useNavigate();
-  const {REACT_APP_BASE_URL} = process.env;
+  const { REACT_APP_BASE_URL } = process.env;
   const [searchString, setSearchString] = useState("");
   const [searchedUser, setSearchedUser] = useState([]);
   const [gradesClick, setGradesClick] = useState(false);
@@ -37,14 +37,18 @@ export default function RenderSidebar({ setSidebarClick }) {
           placeholder="Search for other users..."
           minLength={3}
           debounceTimeout={3}
-          value={ searchString }
+          value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
         />
         {searchedUser.length === 0 ? (
           <></>
         ) : (
           <>
-            <UserSearchContainer searchedUser={searchedUser} navigate={navigate} setSidebarClick={setSidebarClick}/>
+            <UserSearchContainer
+              searchedUser={searchedUser}
+              navigate={navigate}
+              setSidebarClick={setSidebarClick}
+            />
             <div
               className="bg-layer"
               onClick={() => {
@@ -59,10 +63,26 @@ export default function RenderSidebar({ setSidebarClick }) {
             {gradesClick ? <MdOutlineArrowDropDown /> : <MdOutlineArrowRight />}
             <p onClick={() => changeClick()}>Grades</p>
           </div>
-          {gradesClick ? <article><RenderGrades navigate={navigate} setSidebarClick={setSidebarClick}/></article> : <></>}
+          {gradesClick ? (
+            <article>
+              <RenderGrades
+                navigate={navigate}
+                setSidebarClick={setSidebarClick}
+              />
+            </article>
+          ) : (
+            <></>
+          )}
         </section>
-        <p onClick={() => {setSidebarClick(false); navigate('/')}}>All Kanjis</p>
-        <p>Help</p>
+        <p
+          onClick={() => {
+            setSidebarClick(false);
+            navigate("/");
+          }}
+        >
+          All Kanjis
+        </p>
+        <p onClick={() => navigate("/help")}>Help</p>
       </section>
     </>
   );

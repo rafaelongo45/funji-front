@@ -49,6 +49,7 @@ export default function ReviewPage() {
     if (index !== userKanjis.length - 1) {
       index++;
       kanji = { kanji: userInfo.userKanjis[index].kanji };
+      console.log(kanji)
       navigate(`/review/${userInfo.userKanjis[index].kanji}`, {
         state: { kanji: kanji, index: index, type: type},
       });
@@ -83,7 +84,7 @@ export default function ReviewPage() {
 
     const correctAnswer = arr.includes(word.toLowerCase().trim());
     if(correctAnswer){
-      alert('You got it buddy!')
+      alert('Right answer!')
       setCorrect(true)
     }
   }
