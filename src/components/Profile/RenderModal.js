@@ -11,6 +11,7 @@ export default function RenderModal({ setShowModal, navigate, kanjis }) {
         <h1>What do you want to review?</h1>
         <div className="button-wrapper">
           <button
+            className="kun-button"
             onClick={() =>
               navigate(`/review/${kanjis[0].kanji}`, {
                 state: { kanji: kanjis[0], index: 0, type: "kun" },

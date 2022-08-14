@@ -24,13 +24,13 @@ function Signup(){
         </div>
 
         <form onSubmit={(e) => {PostSignupData(e, userData, navigate)}}>
-          <input type={"url"} placeholder="image link" onChange={(e) => setUserData({...userData, profileImage: e.target.value})} required></input>
-          <input type={"text"} placeholder="username" onChange={(e) => setUserData({...userData, username: e.target.value})} required></input>
-          <input type={"email"} placeholder="email" onChange={(e) => setUserData({...userData, email: e.target.value})} required></input>
-          <input type={"password"} placeholder="password" onChange={(e) => setUserData({...userData, password: e.target.value})} required></input>
-          <input type={"password"} placeholder="confirm password" onChange={(e) => setUserData({...userData, confirmPassword: e.target.value})} required></input>
-          <button type="submit"> Signup </button>
-          <p onClick={ () =>  navigate('/signin')}> Already have an account?</p>
+          <input className="img-input" type={"url"} placeholder="image link" onChange={(e) => setUserData({...userData, profileImage: e.target.value})} required></input>
+          <input className="username-input" type={"text"} placeholder="username" onChange={(e) => setUserData({...userData, username: e.target.value})} required></input>
+          <input className="email-input" type={"email"} placeholder="email" onChange={(e) => setUserData({...userData, email: e.target.value})} required></input>
+          <input className="password-input" type={"password"} placeholder="password" onChange={(e) => setUserData({...userData, password: e.target.value})} required></input>
+          <input className="confirmPassword-input" type={"password"} placeholder="confirm password" onChange={(e) => setUserData({...userData, confirmPassword: e.target.value})} required></input>
+          <button className="submit-signup" type="submit"> Signup </button>
+          <p className="signin-redirect-button" onClick={ () =>  navigate('/signin')}> Already have an account?</p>
         </form>
       </section>
     </main>

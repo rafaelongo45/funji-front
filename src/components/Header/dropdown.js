@@ -24,7 +24,7 @@ export default function RenderDropdown({ setDropdownClick, navigate }) {
             <div>
               <AiOutlineUser className="dd-button-icon" />
             </div>
-            <p onClick={() => navigate("/profile", { state: { username } })}>
+            <p className="user-profile-button" onClick={() => navigate("/profile", { state: { username } })}>
               My profile
             </p>
           </button>
@@ -33,12 +33,12 @@ export default function RenderDropdown({ setDropdownClick, navigate }) {
             <div>
               <AiOutlineUser className="dd-button-icon" />
             </div>
-            <p onClick={() => navigate("/signin")}>Signin</p>
+            <p className="signin-button" onClick={() => navigate("/signin")}>Signin</p>
           </button>
         )}
 
         {token ? (
-          <button onClick={() => logout()}>
+          <button className="logout-button" onClick={() => logout()}>
             <div>
               <IoBackspaceSharp className="dd-button-icon" />
             </div>

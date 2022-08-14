@@ -15,7 +15,6 @@ export default function ProfilePage() {
   const { REACT_APP_BASE_URL } = process.env;
   const username = location.state.username;
   const userUsername = localStorage.getItem("username");
-  const profileImage = localStorage.getItem("profileImage");
   const [userData, setUserData] = useState([]);
   const [kanjis, setKanjis] = useState([]);
   const [showModal, setShowModal] = useState(false);

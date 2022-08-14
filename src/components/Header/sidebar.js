@@ -39,6 +39,7 @@ export default function RenderSidebar({ setSidebarClick }) {
           debounceTimeout={3}
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
+          className='input-find-user'
         />
         {searchedUser.length === 0 ? (
           <></>
@@ -75,6 +76,7 @@ export default function RenderSidebar({ setSidebarClick }) {
           )}
         </section>
         <p
+          className="all-kanjis-button"
           onClick={() => {
             setSidebarClick(false);
             navigate("/");
@@ -82,7 +84,9 @@ export default function RenderSidebar({ setSidebarClick }) {
         >
           All Kanjis
         </p>
-        <p onClick={() => navigate("/help")}>Help</p>
+        <p className="help-button" onClick={() => navigate("/help")}>
+          Help
+        </p>
       </section>
     </>
   );

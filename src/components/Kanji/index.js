@@ -55,7 +55,7 @@ export default function KanjiPage() {
             <RenderKanjiInfo info={kanjiInfo.name_readings} title={"Name readings"}/>
           </section>
           <div className="button-wrapper">
-            <button onClick={() => navigate(-1)}> Go back </button>
+            <button className="back-button" onClick={() => navigate(-1)}> Go back </button>
             <button disabled={token && !hasKanji ? false : true} onClick={() => PostKanjiUser(kanjiInfo.kanji, kanjiInfo.grade, token)} > Save </button>
           </div>
         </section>

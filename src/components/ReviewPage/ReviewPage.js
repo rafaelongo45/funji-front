@@ -84,7 +84,7 @@ export default function ReviewPage() {
 
     const correctAnswer = arr.includes(word.toLowerCase().trim());
     if(correctAnswer){
-      alert('Right answer!')
+      alert('Correct!')
       setCorrect(true)
     }
   }
