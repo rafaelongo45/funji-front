@@ -49,16 +49,12 @@ export default function ReviewPage() {
     if (index !== userKanjis.length - 1) {
       index++;
       kanji = { kanji: userInfo.userKanjis[index].kanji };
-      console.log(kanji)
       navigate(`/review/${userInfo.userKanjis[index].kanji}`, {
         state: { kanji: kanji, index: index, type: type},
       });
     }
   }
-  console.log(kanjiInfo);
-  console.log(word);
-  console.log(type);
-  console.log(hashtable)
+
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/kanji/${kanji}`);
     promise.then((res) => setKanjiInfo(res.data));
@@ -67,9 +63,7 @@ export default function ReviewPage() {
   }, [index]);
 
   function changeInput() {
-    console.log(lastLetter);
     const prevLet = lastLetter.toString().replaceAll(",", "");
-    console.log(prevLet);
     const letter = translator(hashtable, prevLet);
     setWord(word + letter);
     setLastLetter([]);
@@ -84,8 +78,8 @@ export default function ReviewPage() {
 
     const correctAnswer = arr.includes(word.toLowerCase().trim());
     if(correctAnswer){
-      alert('Correct!')
-      setCorrect(true)
+      alert('Correct!');
+      setCorrect(true);
     }
   }
   return (
