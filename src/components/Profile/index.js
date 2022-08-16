@@ -63,6 +63,7 @@ export default function ProfilePage() {
               <button
                 className="review-button"
                 onClick={() => setShowModal(true)}
+                disabled = {kanjis.length === 0 ? true : false}
               >
                 Review
               </button>

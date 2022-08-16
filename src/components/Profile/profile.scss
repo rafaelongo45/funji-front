@@ -114,6 +114,10 @@
         font-family: $default-font-family;
         border-radius: 14px;
       }
+
+      >.review-button:disabled {
+        background-color: $disabled-button;
+      }
     }
 
     .bar {

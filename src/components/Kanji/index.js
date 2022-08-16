@@ -18,6 +18,7 @@ export default function KanjiPage() {
   const username = localStorage.getItem('username');
   const { kanji } = location.state;
   const [kanjiInfo, setKanjiInfo] = useState([]);
+  const [buttonClick, setButtonClick] = useState(false);
   useEffect(() => {
     const promise = axios.get(`${REACT_APP_BASE_URL}/kanji/${kanji}`);
     promise.then((res) => setKanjiInfo(res.data));
@@ -32,7 +33,7 @@ export default function KanjiPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   let hasKanji;
-
+  
   if(userInfo.userKanjis){
     hasKanji = userInfo.userKanjis.find(kanjiObj => kanjiObj.kanji === kanji);
   }
@@ -56,7 +57,7 @@ export default function KanjiPage() {
           </section>
           <div className="button-wrapper">
             <button className="back-button" onClick={() => navigate(-1)}> Go back </button>
-            <button disabled={token && !hasKanji ? false : true} onClick={() => PostKanjiUser(kanjiInfo.kanji, kanjiInfo.grade, token)} > Save </button>
+            <button disabled={token && !hasKanji && !buttonClick ? false : true} onClick={() => PostKanjiUser(kanjiInfo.kanji, kanjiInfo.grade, token, setButtonClick)} > Save </button>
           </div>
         </section>
       </main>
