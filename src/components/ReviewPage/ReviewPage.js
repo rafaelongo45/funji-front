@@ -42,7 +42,7 @@ export default function ReviewPage() {
     setCorrect(false)
     setWord('')
     setLastLetter([])
-    if (index === userKanjis.length - 1) {
+    if (index === userKanjis.length) {
       navigate("/profile", { state: { username: username } });
     }
 
