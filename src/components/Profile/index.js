@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Header from "../Header";
@@ -8,12 +8,14 @@ import RenderGrades from "../Header/RenderGrades.js";
 import RenderModal from "./RenderModal.js";
 
 import "./profile.scss";
+import UserContext from "../../contexts/UserContext";
 
 export default function ProfilePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { REACT_APP_BASE_URL } = process.env;
   const username = location.state.username;
+  const { setUserInfo, userInfo } = useContext(UserContext);
   const userUsername = localStorage.getItem("username");
   const [userData, setUserData] = useState([]);
   const [kanjis, setKanjis] = useState([]);
@@ -23,10 +25,11 @@ export default function ProfilePage() {
     promise.then((res) => {
       setUserData(res.data);
       setKanjis(res.data.kanjis);
+      username === userUsername ? setUserInfo({...userInfo, userKanjis: kanjis}) : <></>
     });
     promise.catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username]);
+  }, [username, kanjis]);
   return (
     <>
       <Header />
