@@ -9,10 +9,8 @@ export default function PostKanjiUser(kanji, grade, token, setButtonClick) {
   }
   let kanjiData;
   grade ? kanjiData = { kanji, grade: grade.toString() } : kanjiData = { kanji, grade: '0' };
-  console.log(kanjiData)
   const promise = axios.post(`${REACT_APP_BASE_URL}/kanji`, kanjiData, header);
   promise.then(res => {
-    console.log(res);
     setButtonClick(true);
   });
   promise.catch(err => console.log(err));

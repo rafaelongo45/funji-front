@@ -17,7 +17,6 @@ const { REACT_APP_BASE_URL } = process.env;
 export default function ReviewPage() {
   const { userInfo } = useContext(UserContext);
   const userKanjis = userInfo.userKanjis;
-  console.log(userInfo)
   const [cardClick, setCardClick] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [kanjiInfo, setKanjiInfo] = useState([]);

@@ -25,11 +25,11 @@ export default function ProfilePage() {
     promise.then((res) => {
       setUserData(res.data);
       setKanjis(res.data.kanjis);
-      username === userUsername ? setUserInfo({...userInfo, userKanjis: kanjis}) : <></>
+      username === userUsername ? setUserInfo({...userInfo, userKanjis: res.data.kanjis}) : <></>
     });
     promise.catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username, kanjis]);
+  }, [username]);
   return (
     <>
       <Header />
