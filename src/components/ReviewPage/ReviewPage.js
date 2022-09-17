@@ -9,6 +9,7 @@ import Header from "../Header/index.js";
 import RenderKanjiInfo from "../Kanji/RenderKanjiInfos.js";
 import selectVocabulary from "../utils/selectVocabulary.js";
 import translator from "../utils/translate.js";
+import AnswerModal from "./AnswerModal.js";
 import RenderModal from "./ReviewModal.js";
 
 import "./reviewPage.scss";
@@ -21,7 +22,9 @@ export default function ReviewPage() {
   const [showModal, setShowModal] = useState(false);
   const [kanjiInfo, setKanjiInfo] = useState([]);
   const [lastLetter, setLastLetter] = useState([]);
+  const [answer, setAnswer] = useState("");
   const [correct, setCorrect] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,9 +42,9 @@ export default function ReviewPage() {
   }
 
   function checkIndexRedirect() {
-    setCorrect(false)
-    setWord('')
-    setLastLetter([])
+    setCorrect(false);
+    setWord("");
+    setLastLetter([]);
     if (index === userKanjis.length - 1) {
       navigate("/profile", { state: { username: username } });
     }
@@ -50,7 +53,7 @@ export default function ReviewPage() {
       index++;
       kanji = { kanji: userInfo.userKanjis[index].kanji };
       navigate(`/review/${userInfo.userKanjis[index].kanji}`, {
-        state: { kanji: kanji, index: index, type: type},
+        state: { kanji: kanji, index: index, type: type },
       });
     }
   }
@@ -69,21 +72,30 @@ export default function ReviewPage() {
     setLastLetter([]);
   }
 
-  function checkAnswer(e){
+  function checkAnswer(e) {
     e.preventDefault();
     let arr = [];
-    if(type === 'kun') arr = kanjiInfo.kun_readings;
-    if(type === 'on') arr = kanjiInfo.on_readings;
-    if(type === 'meaning') arr = kanjiInfo.meanings;
+    if (type === "kun") arr = kanjiInfo.kun_readings;
+    if (type === "on") arr = kanjiInfo.on_readings;
+    if (type === "meaning") arr = kanjiInfo.meanings;
 
     const correctAnswer = arr.includes(word.toLowerCase().trim());
-    if(correctAnswer){
-      alert('Correct!');
+    if (correctAnswer) {
+      setAnswer("Correct!");
+      setShowAnswer(true);
       setCorrect(true);
+    } else {
+      setAnswer("Wrong!");
+      setShowAnswer(true);
     }
   }
   return (
     <>
+      {showAnswer ? (
+        <AnswerModal answer={answer} setShowAnswer={setShowAnswer} />
+      ) : (
+        <> </>
+      )}
       <Header />
       {showModal ? (
         <RenderModal setShowModal={setShowModal} setCardClick={setCardClick} />
@@ -136,9 +148,7 @@ export default function ReviewPage() {
               value={word}
             />
           ) : (
-            <input
-              onChange={(e) => setWord(e.target.value)}
-            ></input>
+            <input onChange={(e) => setWord(e.target.value)}></input>
           )}
           <button type="submit">
             <IoSendSharp />
@@ -156,7 +166,12 @@ export default function ReviewPage() {
             >
               Go back
             </button>
-            <button disabled={correct ? false : true} onClick={() => checkIndexRedirect()}>Next</button>
+            <button
+              disabled={correct ? false : true}
+              onClick={() => checkIndexRedirect()}
+            >
+              Next
+            </button>
           </div>
         )}
       </main>
