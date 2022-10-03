@@ -9,8 +9,8 @@
   height: 70px;
   position: fixed;
   z-index: 5;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 
   .sidebar-icon {
     color: #fff;
@@ -19,13 +19,14 @@
     cursor: pointer;
   }
 
-  h1 {
+  > h1 {
     color: #fff;
     font-size: 42px;
     font-weight: 600;
     font-family: $title-font-family;
     letter-spacing: 2px;
     margin-left: 30px;
+    cursor: pointer;
   }
 
   .user-profile {

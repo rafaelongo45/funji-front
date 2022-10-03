@@ -7,7 +7,7 @@
   min-width: 100vw;
   background-color: $bg-color;
 
-  >.kanjis-wrapper {
+  > .kanjis-wrapper {
     @include center;
     margin-top: 20px;
     min-width: 95%;
@@ -16,7 +16,7 @@
     border-radius: 18px;
     box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
 
-    >h2 {
+    > h2 {
       align-self: flex-start;
       margin: 15px 0 5px 18px;
       font-family: $default-font-family;
@@ -25,20 +25,21 @@
       color: #434343;
     }
 
-    >.bar {
+    > .bar {
       margin: 0;
       min-height: 1px;
     }
 
-    >.kanjis {
+    > .kanjis {
       display: flex;
       flex-wrap: wrap;
       margin: 10px auto;
       width: 90%;
       height: 100%;
-      overflow: scroll;
+      overflow-x: hidden;
 
       .kanji-box {
+        cursor: pointer;
         margin: 5px auto;
       }
     }

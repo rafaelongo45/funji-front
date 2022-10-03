@@ -18,16 +18,18 @@ export default function Header() {
 
   return (
     <header className="header">
-      <AiOutlineMenu className="sidebar-icon" onClick={() => setSidebarClick(true)} />
+      <AiOutlineMenu
+        className="sidebar-icon"
+        onClick={() => setSidebarClick(true)}
+      />
 
-      {
-        sidebarClick ? 
-          <RenderSidebar setSidebarClick={setSidebarClick} />
-        :
-          <></>
-      }
+      {sidebarClick ? (
+        <RenderSidebar setSidebarClick={setSidebarClick} />
+      ) : (
+        <></>
+      )}
 
-      <h1>Funji</h1>
+      <h1 onClick={() => navigate("/")}>Funji</h1>
 
       <div className="user-profile">
         {profileImage ? (
