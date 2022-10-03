@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toHiragana, toKatakana } from "wanakana";
 import { useContext, useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { IoSendSharp } from "react-icons/io5";
@@ -7,21 +8,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext.js";
 import Header from "../Header/index.js";
 import RenderKanjiInfo from "../Kanji/RenderKanjiInfos.js";
-import selectVocabulary from "../utils/selectVocabulary.js";
-import translator from "../utils/translate.js";
 import AnswerModal from "./AnswerModal.js";
 import RenderModal from "./ReviewModal.js";
 
 import "./reviewPage.scss";
 
-const { REACT_APP_BASE_URL } = process.env;
 export default function ReviewPage() {
+  const { REACT_APP_BASE_URL } = process.env;
   const { userInfo } = useContext(UserContext);
   const userKanjis = userInfo.userKanjis;
   const [cardClick, setCardClick] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [kanjiInfo, setKanjiInfo] = useState([]);
-  const [lastLetter, setLastLetter] = useState([]);
   const [answer, setAnswer] = useState("");
   const [correct, setCorrect] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -32,7 +30,6 @@ export default function ReviewPage() {
   let index = location.state.index;
   let type = location.state.type;
   const username = localStorage.getItem("username");
-  const hashtable = selectVocabulary(type);
   function cardToggle() {
     if (cardClick) {
       setCardClick(false);
@@ -44,7 +41,6 @@ export default function ReviewPage() {
   function checkIndexRedirect() {
     setCorrect(false);
     setWord("");
-    setLastLetter([]);
     if (index === userKanjis.length - 1) {
       navigate("/profile", { state: { username: username } });
     }
@@ -65,11 +61,9 @@ export default function ReviewPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
-  function changeInput() {
-    const prevLet = lastLetter.toString().replaceAll(",", "");
-    const letter = translator(hashtable, prevLet);
-    setWord(word + letter);
-    setLastLetter([]);
+  function changeInput(e) {
+    if (type === "kun") setWord(toHiragana(e.target.value));
+    if (type === "on") setWord(toKatakana(e.target.value));
   }
 
   function checkAnswer(e) {
@@ -89,11 +83,12 @@ export default function ReviewPage() {
       setShowAnswer(true);
     }
   }
+
   return (
     <>
-      {showAnswer ? (
-        <AnswerModal answer={answer} setShowAnswer={setShowAnswer} />
-      ) : (
+        {showAnswer ? (
+          <AnswerModal answer={answer} setShowAnswer={setShowAnswer} />
+        ) : (
         <> </>
       )}
       <Header />
@@ -134,14 +129,6 @@ export default function ReviewPage() {
         <form className="card-answer" onSubmit={(e) => checkAnswer(e)}>
           {type !== "meaning" ? (
             <DebounceInput
-              onKeyDown={(e) => {
-                if (e.key === "Backspace" || e.key === "Delete") {
-                  setWord("");
-                  setLastLetter([]);
-                } else {
-                  setLastLetter([...lastLetter, e.key]);
-                }
-              }}
               type={"text"}
               debounceTimeout={200}
               onChange={(e) => changeInput(e)}
